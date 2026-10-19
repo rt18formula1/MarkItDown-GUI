@@ -1,5 +1,7 @@
 # MarkItDown GUI
 
+[日本語](README.md) | [English](README.en.md)
+
 既存のMicrosoft MarkItDownを呼び出すmacOSアプリと、独立したWeb版の最小構成です。変換エンジンを再実装しません。
 
 ## Macメニューバーアプリ
