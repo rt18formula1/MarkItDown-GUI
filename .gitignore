@@ -1,0 +1,26 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Swift / Xcode build artifacts
+.build/
+DerivedData/
+*.xcuserstate
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.key
+
+# Local logs
+*.log
+
+# Built application bundle
+MarkItDownGUI.app/
+
+# Built application bundle
+MarkItDownGUI.app/
