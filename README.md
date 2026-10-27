@@ -35,51 +35,51 @@ pip install -r requirements.txt
 uvicorn app:app --host 127.0.0.1 --port 8000
 ```
 
-### Netlifyへのデプロイ
+### Vercelへのデプロイ
 
-Netlify Functionsを使用してサーバーレス環境にデプロイできます。
+Vercelを使用してサーバーレス環境にデプロイできます。
 
 #### デプロイ手順
 
-1. **Netlifyアカウントの作成**
-   - https://www.netlify.com/ でアカウントを作成
+1. **Vercelアカウントの作成**
+   - https://vercel.com/ でアカウントを作成
 
 2. **Gitリポジトリの準備**
    - プロジェクトをGitHub/GitLab/Bitbucketにプッシュ
 
-3. **Netlifyで新規サイトを作成**
-   - Netlifyダッシュボードで「Add new site」→「Import an existing project」
-   - Gitプロバイダーを選択し、リポジトリを選択
+3. **Vercelで新規プロジェクトを作成**
+   - Vercelダッシュボードで「Add New Project」
+   - Gitプロバイダーを選択し、`rt18formula1/MarkItDown-GUI`リポジトリを選択
 
-4. **ビルド設定**
-   - **Build command**: 空白（または `cd web && pip install -r requirements.txt`）
-   - **Publish directory**: `web`
-   - **Functions directory**: `web/netlify/functions`
+4. **プロジェクト設定**
+   - **Framework Preset**: Other
+   - **Root Directory**: `.`（ルート）
+   - **Build Command**: 空白
+   - **Output Directory**: `web`
 
 5. **環境変数の設定**（必要な場合）
-   - Netlifyダッシュボードの「Site settings」→「Environment variables」で設定
+   - Vercelダッシュボードの「Settings」→「Environment Variables」で設定
 
 6. **デプロイ**
-   - 「Deploy site」をクリック
+   - 「Deploy」をクリック
    - 自動的にデプロイが開始されます
 
-#### 手動デプロイ（Netlify CLIを使用）
+#### 手動デプロイ（Vercel CLIを使用）
 
 ```sh
-# Netlify CLIのインストール
-npm install -g netlify-cli
+# Vercel CLIのインストール
+npm install -g vercel
 
 # ログイン
-netlify login
+vercel login
 
 # デプロイ
-cd web
-netlify deploy --prod
+vercel --prod
 ```
 
 #### 注意点
 
-- Netlify Functionsには実行時間制限（無料プラン: 10秒）があります
+- Vercel Serverless Functionsには実行時間制限（Hobby無料プラン: 10秒）があります
 - 大きなファイルの変換にはタイムアウトする可能性があります
 - テキスト貼り付けはクライアント側で処理され、そのまま`.md`としてダウンロードされます
 - ファイル変換はMarkItDown Pythonパッケージを使用してサーバーレス関数で処理されます
