@@ -138,6 +138,27 @@
       font-size: 24px;
       margin-right: 8px
     }
+    .lang-switch {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: white;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      color: #667eea;
+      transition: all 0.2s
+    }
+    .lang-switch:hover {
+      border-color: #667eea;
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3)
+    }
+    .container {
+      position: relative
+    }
     @media (max-width: 600px) {
       .container {
         padding: 24px
@@ -150,36 +171,101 @@
 </head>
 <body>
   <div class="container">
+    <button class="lang-switch" id="langSwitch">English</button>
     <h1><span class="icon">📝</span>MarkItDown</h1>
-    <p class="subtitle">テキストをMarkdownとして保存するか、ファイルをMarkItDownで変換します。</p>
+    <p class="subtitle" data-i18n="subtitle">テキストをMarkdownとして保存するか、ファイルをMarkItDownで変換します。</p>
     
     <div class="mac-app-card">
-      <h3>📱 macOSアプリも利用可能</h3>
-      <p>メニューバーから簡単にファイルを変換できるmacOSアプリもご利用いただけます。</p>
-      <a href="https://github.com/rt18formula1/MarkItDown-GUI/releases" target="_blank" class="download-btn">GitHub Releasesからダウンロード</a>
-      <div class="warning">⚠️ 注意: このアプリはApple Developer IDで署名されていません。初回起動時にセキュリティ警告が表示される場合があります。その場合は「システム設定」→「プライバシーとセキュリティ」から許可してください。</div>
+      <h3 data-i18n="mac-app-title">📱 macOSアプリも利用可能</h3>
+      <p data-i18n="mac-app-desc">メニューバーから簡単にファイルを変換できるmacOSアプリもご利用いただけます。</p>
+      <a href="https://github.com/rt18formula1/MarkItDown-GUI/releases" target="_blank" class="download-btn" data-i18n="download-btn">GitHub Releasesからダウンロード</a>
+      <div class="warning" data-i18n="warning">⚠️ 注意: このアプリはApple Developer IDで署名されていません。初回起動時にセキュリティ警告が表示される場合があります。その場合は「システム設定」→「プライバシーとセキュリティ」から許可してください。</div>
     </div>
     
     <section>
-      <h2>📄 テキスト変換</h2>
+      <h2 data-i18n="text-section-title">📄 テキスト変換</h2>
       <form id='textForm'>
-        <textarea name='text' placeholder='文章を貼り付けてください...'></textarea>
-        <button type='submit'>Markdownをダウンロード</button>
+        <textarea name='text' data-i18n-placeholder="text-placeholder" placeholder='文章を貼り付けてください...'></textarea>
+        <button type='submit' data-i18n="text-submit">Markdownをダウンロード</button>
       </form>
       <div id='textError' class='error'></div>
     </section>
     
     <section>
-      <h2>📁 ファイル変換</h2>
+      <h2 data-i18n="file-section-title">📁 ファイル変換</h2>
       <form id='fileForm'>
         <input type='file' name='file' required>
-        <button type='submit'>変換してダウンロード</button>
+        <button type='submit' data-i18n="file-submit">変換してダウンロード</button>
       </form>
       <div id='fileError' class='error'></div>
     </section>
   </div>
 
   <script>
+    const translations = {
+      ja: {
+        'lang-switch': 'English',
+        'subtitle': 'テキストをMarkdownとして保存するか、ファイルをMarkItDownで変換します。',
+        'mac-app-title': '📱 macOSアプリも利用可能',
+        'mac-app-desc': 'メニューバーから簡単にファイルを変換できるmacOSアプリもご利用いただけます。',
+        'download-btn': 'GitHub Releasesからダウンロード',
+        'warning': '⚠️ 注意: このアプリはApple Developer IDで署名されていません。初回起動時にセキュリティ警告が表示される場合があります。その場合は「システム設定」→「プライバシーとセキュリティ」から許可してください。',
+        'text-section-title': '📄 テキスト変換',
+        'text-placeholder': '文章を貼り付けてください...',
+        'text-submit': 'Markdownをダウンロード',
+        'file-section-title': '📁 ファイル変換',
+        'file-submit': '変換してダウンロード',
+        'error-text': 'テキストを入力してください',
+        'error-file': 'ファイルを選択してください',
+        'error-prefix': 'エラー: ',
+        'error-convert': '変換に失敗しました'
+      },
+      en: {
+        'lang-switch': '日本語',
+        'subtitle': 'Save text as Markdown or convert files using MarkItDown.',
+        'mac-app-title': '📱 macOS App Also Available',
+        'mac-app-desc': 'A macOS app that makes it easy to convert files from the menu bar.',
+        'download-btn': 'Download from GitHub Releases',
+        'warning': '⚠️ Note: This app is not signed with an Apple Developer ID. You may see a security warning on first launch. If so, please allow it via "System Settings" → "Privacy & Security".',
+        'text-section-title': '📄 Text Conversion',
+        'text-placeholder': 'Paste your text here...',
+        'text-submit': 'Download Markdown',
+        'file-section-title': '📁 File Conversion',
+        'file-submit': 'Convert and Download',
+        'error-text': 'Please enter text',
+        'error-file': 'Please select a file',
+        'error-prefix': 'Error: ',
+        'error-convert': 'Conversion failed'
+      }
+    };
+
+    let currentLang = 'ja';
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      const t = translations[lang];
+      
+      document.getElementById('langSwitch').textContent = t['lang-switch'];
+      
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) {
+          el.textContent = t[key];
+        }
+      });
+      
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (t[key]) {
+          el.placeholder = t[key];
+        }
+      });
+    }
+
+    document.getElementById('langSwitch').addEventListener('click', () => {
+      setLanguage(currentLang === 'ja' ? 'en' : 'ja');
+    });
+
     document.getElementById('textForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       const text = e.target.text.value;
@@ -187,7 +273,7 @@
       errorDiv.textContent = '';
       
       if (!text.trim()) {
-        errorDiv.textContent = 'テキストを入力してください';
+        errorDiv.textContent = translations[currentLang]['error-text'];
         return;
       }
       
@@ -200,7 +286,7 @@
         a.click();
         URL.revokeObjectURL(url);
       } catch (err) {
-        errorDiv.textContent = 'エラー: ' + err.message;
+        errorDiv.textContent = translations[currentLang]['error-prefix'] + err.message;
       }
     });
 
@@ -211,7 +297,7 @@
       errorDiv.textContent = '';
       
       if (!file) {
-        errorDiv.textContent = 'ファイルを選択してください';
+        errorDiv.textContent = translations[currentLang]['error-file'];
         return;
       }
       
@@ -226,7 +312,7 @@
         
         if (!response.ok) {
           const error = await response.text();
-          throw new Error(error || '変換に失敗しました');
+          throw new Error(error || translations[currentLang]['error-convert']);
         }
         
         const markdown = await response.text();
@@ -238,7 +324,7 @@
         a.click();
         URL.revokeObjectURL(url);
       } catch (err) {
-        errorDiv.textContent = 'エラー: ' + err.message;
+        errorDiv.textContent = translations[currentLang]['error-prefix'] + err.message;
       }
     });
   </script>
