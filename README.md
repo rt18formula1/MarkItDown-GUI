@@ -35,11 +35,19 @@ pip install -r requirements.txt
 uvicorn app:app --host 127.0.0.1 --port 8000
 ```
 
-### Vercelへのデプロイ
+### Next.js版（推奨）
 
-Vercelを使用してサーバーレス環境にデプロイできます。
+Next.jsを使用したモダンなWebアプリです。日英両対応で、Vercelに最適化されています。
 
-#### デプロイ手順
+#### ローカル実行
+
+```sh
+cd web-nextjs
+npm install
+npm run dev
+```
+
+#### Vercelへのデプロイ
 
 1. **Vercelアカウントの作成**
    - https://vercel.com/ でアカウントを作成
@@ -52,15 +60,11 @@ Vercelを使用してサーバーレス環境にデプロイできます。
    - Gitプロバイダーを選択し、`rt18formula1/MarkItDown-GUI`リポジトリを選択
 
 4. **プロジェクト設定**
-   - **Framework Preset**: Other
-   - **Root Directory**: `.`（ルート）
-   - **Build Command**: 空白
-   - **Output Directory**: `web`
+   - **Framework Preset**: Next.js
+   - **Root Directory**: `web-nextjs`
+   - 自動検出される設定を使用
 
-5. **環境変数の設定**（必要な場合）
-   - Vercelダッシュボードの「Settings」→「Environment Variables」で設定
-
-6. **デプロイ**
+5. **デプロイ**
    - 「Deploy」をクリック
    - 自動的にデプロイが開始されます
 
@@ -74,6 +78,7 @@ npm install -g vercel
 vercel login
 
 # デプロイ
+cd web-nextjs
 vercel --prod
 ```
 
