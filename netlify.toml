@@ -1,9 +1,10 @@
 [build]
+  base = "web"
   publish = "."
+  command = ""
 
 [functions]
   directory = "netlify/functions"
-  node_bundler = "esbuild"
 
 [[redirects]]
   from = "/api/*"
