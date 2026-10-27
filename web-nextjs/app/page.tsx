@@ -5,29 +5,29 @@ import { useState } from 'react';
 const translations = {
   ja: {
     langSwitch: 'English',
+    title: 'MarkItDown',
     subtitle: 'テキストをMarkdownとして保存します。',
-    macAppTitle: '📱 macOSアプリも利用可能',
-    macAppDesc: 'メニューバーから簡単にファイルを変換できるmacOSアプリもご利用いただけます。',
+    macAppTitle: 'macOSアプリ',
+    macAppDesc: 'メニューバーから簡単にファイルを変換できるアプリ',
     downloadBtn: 'GitHub Releasesからダウンロード',
-    warning: '⚠️ 注意: このアプリはApple Developer IDで署名されていません。初回起動時にセキュリティ警告が表示される場合があります。その場合は「システム設定」→「プライバシーとセキュリティ」から許可してください。',
-    textSectionTitle: '📄 テキスト変換',
+    warning: 'このアプリはApple Developer IDで署名されていません。初回起動時にセキュリティ警告が表示される場合があります。',
+    textSectionTitle: 'テキスト変換',
     textPlaceholder: '文章を貼り付けてください...',
     textSubmit: 'Markdownをダウンロード',
-    errorText: 'テキストを入力してください',
-    errorPrefix: 'エラー: '
+    errorText: 'テキストを入力してください'
   },
   en: {
     langSwitch: '日本語',
+    title: 'MarkItDown',
     subtitle: 'Save text as Markdown.',
-    macAppTitle: '📱 macOS App Also Available',
-    macAppDesc: 'A macOS app that makes it easy to convert files from the menu bar.',
+    macAppTitle: 'macOS App',
+    macAppDesc: 'A menu bar app for easy file conversion',
     downloadBtn: 'Download from GitHub Releases',
-    warning: '⚠️ Note: This app is not signed with an Apple Developer ID. You may see a security warning on first launch. If so, please allow it via "System Settings" → "Privacy & Security".',
-    textSectionTitle: '📄 Text Conversion',
+    warning: 'This app is not signed with an Apple Developer ID. You may see a security warning on first launch.',
+    textSectionTitle: 'Text Conversion',
     textPlaceholder: 'Paste your text here...',
     textSubmit: 'Download Markdown',
-    errorText: 'Please enter text',
-    errorPrefix: 'Error: '
+    errorText: 'Please enter text'
   }
 };
 
@@ -59,64 +59,62 @@ export default function Home() {
       a.click();
       URL.revokeObjectURL(url);
     } catch (err) {
-      setTextError(t.errorPrefix + (err as Error).message);
+      setTextError((err as Error).message);
     }
   };
 
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#667eea] to-[#764ba2] py-10 px-5">
-      <div className="max-w-3xl mx-auto bg-white rounded-3xl p-10 shadow-2xl relative">
-        <button
-          onClick={handleLanguageSwitch}
-          className="absolute top-5 right-5 bg-white border-2 border-gray-200 rounded-lg px-4 py-2 cursor-pointer text-sm font-semibold text-[#667eea] hover:border-[#667eea] hover:shadow-lg transition-all"
-        >
-          {t.langSwitch}
-        </button>
-        
-        <h1 className="text-4xl mb-2 bg-gradient-to-r from-[#667eea] to-[#764ba2] bg-clip-text text-transparent">
-          📝 MarkItDown
-        </h1>
-        <p className="text-gray-600 mb-8">{t.subtitle}</p>
-        
-        <div className="bg-gradient-to-br from-gray-100 to-gray-200 p-6 rounded-xl mb-8 border-l-4 border-[#667eea]">
-          <h3 className="text-xl mb-3 text-gray-800">{t.macAppTitle}</h3>
-          <p className="text-gray-600 mb-4 leading-relaxed">{t.macAppDesc}</p>
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-2xl mx-auto px-6 py-16">
+        <header className="flex justify-between items-start mb-12">
+          <div>
+            <h1 className="text-3xl font-semibold text-gray-900 mb-2">{t.title}</h1>
+            <p className="text-gray-600">{t.subtitle}</p>
+          </div>
+          <button
+            onClick={handleLanguageSwitch}
+            className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
+          >
+            {t.langSwitch}
+          </button>
+        </header>
+
+        <section className="mb-12 p-6 bg-white border border-gray-200">
+          <h2 className="text-lg font-medium text-gray-900 mb-2">{t.macAppTitle}</h2>
+          <p className="text-gray-600 mb-4">{t.macAppDesc}</p>
           <a
             href="https://github.com/rt18formula1/MarkItDown-GUI/releases"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-gradient-to-r from-[#667eea] to-[#764ba2] text-white px-6 py-3 rounded-lg font-semibold hover:-translate-y-0.5 hover:shadow-lg transition-all"
+            className="inline-block text-sm text-gray-900 hover:text-gray-600 transition-colors"
           >
-            {t.downloadBtn}
+            {t.downloadBtn} →
           </a>
-          <div className="text-sm text-orange-700 bg-orange-50 p-2.5 rounded-lg mt-3">
-            {t.warning}
-          </div>
-        </div>
-        
-        <div className="bg-gray-50 p-6 rounded-xl">
-          <h2 className="text-2xl mb-4 text-gray-800">{t.textSectionTitle}</h2>
+          <p className="text-xs text-gray-500 mt-4">{t.warning}</p>
+        </section>
+
+        <section className="p-6 bg-white border border-gray-200">
+          <h2 className="text-lg font-medium text-gray-900 mb-4">{t.textSectionTitle}</h2>
           <form onSubmit={handleTextSubmit}>
             <textarea
               value={text}
               onChange={(e) => setText(e.target.value)}
               placeholder={t.textPlaceholder}
-              className="w-full min-h-[200px] p-4 border-2 border-gray-200 rounded-lg font-sans text-sm resize-y focus:outline-none focus:border-[#667eea] transition-colors"
+              className="w-full min-h-[200px] p-4 border border-gray-300 font-mono text-sm resize-y focus:outline-none focus:border-gray-900 transition-colors"
             />
             <button
               type="submit"
-              className="mt-3 bg-gradient-to-r from-[#667eea] to-[#764ba2] text-white px-6 py-3 rounded-lg font-semibold hover:-translate-y-0.5 hover:shadow-lg transition-all"
+              className="mt-4 px-6 py-2 bg-gray-900 text-white text-sm font-medium hover:bg-gray-800 transition-colors"
             >
               {t.textSubmit}
             </button>
           </form>
           {textError && (
-            <div className="text-red-700 mt-3 p-3 bg-red-50 rounded-lg text-sm">
+            <div className="mt-4 text-sm text-red-600">
               {textError}
             </div>
           )}
-        </div>
+        </section>
       </div>
     </div>
   );
