@@ -21,13 +21,19 @@ Xcodeが入ったMacで `./package-app.sh` を実行すると`MarkItDownGUI.app`
 
 この端末にはSwiftとCommand Line ToolsはありますがXcode本体がないため、`.app`バンドル化やログイン項目登録はまだ行っていません。
 
+## 購入
+
+MarkItDown-GUIはBOOTHで100円で販売しています。
+
+- [BOOTH商品ページ](https://meteor-cs.booth.pm/items/9057523)
+
 ## Webサイト
 
-MarkItDown GUIの公式ウェブサイトです。アプリの紹介とダウンロードリンクを提供しています。
+MarkItDown GUIの公式ウェブサイトです。アプリの紹介と購入リンクを提供しています。
 
 - 日英両対応
 - Vercelでホスティング
-- アプリの機能説明とダウンロードリンク
+- アプリの機能説明とBOOTH購入リンク
 
 ### ローカル実行
 
