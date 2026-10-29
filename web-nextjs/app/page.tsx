@@ -6,118 +6,48 @@ const translations = {
   ja: {
     langSwitch: 'English',
     title: 'MarkItDown',
-    subtitle: 'テキストをMarkdownとして保存するか、ファイルを変換します。',
-    macAppTitle: 'macOSアプリ',
-    macAppDesc: 'メニューバーから簡単にファイルを変換できるアプリ',
+    subtitle: 'メニューバーから簡単にファイルをMarkdownに変換',
+    description: 'MarkItDownはMicrosoftのMarkItDownを活用したmacOSメニューバーアプリケーションです。PDF、Word、Excel、PowerPointなどのファイルをドラッグ＆ドロップで簡単にMarkdownに変換できます。',
+    features: [
+      'メニューバーから素早くアクセス',
+      'ドラッグ＆ドロップでファイル変換',
+      'PDF、Word、Excel、PowerPointに対応',
+      '変換結果をクリップボードにコピー'
+    ],
     downloadBtn: 'GitHub Releasesからダウンロード',
     warning: 'このアプリはApple Developer IDで署名されていません。初回起動時にセキュリティ警告が表示される場合があります。',
-    textSectionTitle: 'テキスト変換',
-    textPlaceholder: '文章を貼り付けてください...',
-    textSubmit: 'Markdownをダウンロード',
-    fileSectionTitle: 'ファイル変換',
-    fileSubmit: '変換してダウンロード',
-    errorText: 'テキストを入力してください',
-    errorFile: 'ファイルを選択してください',
-    errorPrefix: 'エラー: ',
-    errorConvert: '変換に失敗しました'
+    repoBtn: 'GitHubリポジトリを見る'
   },
   en: {
     langSwitch: '日本語',
     title: 'MarkItDown',
-    subtitle: 'Save text as Markdown or convert files.',
-    macAppTitle: 'macOS App',
-    macAppDesc: 'A menu bar app for easy file conversion',
+    subtitle: 'Convert files to Markdown from your menu bar',
+    description: 'MarkItDown is a macOS menu bar application powered by Microsoft\'s MarkItDown. Easily convert PDF, Word, Excel, PowerPoint, and other files to Markdown with drag and drop.',
+    features: [
+      'Quick access from menu bar',
+      'Drag and drop file conversion',
+      'Supports PDF, Word, Excel, PowerPoint',
+      'Copy conversion result to clipboard'
+    ],
     downloadBtn: 'Download from GitHub Releases',
     warning: 'This app is not signed with an Apple Developer ID. You may see a security warning on first launch.',
-    textSectionTitle: 'Text Conversion',
-    textPlaceholder: 'Paste your text here...',
-    textSubmit: 'Download Markdown',
-    fileSectionTitle: 'File Conversion',
-    fileSubmit: 'Convert and Download',
-    errorText: 'Please enter text',
-    errorFile: 'Please select a file',
-    errorPrefix: 'Error: ',
-    errorConvert: 'Conversion failed'
+    repoBtn: 'View GitHub Repository'
   }
 };
 
 export default function Home() {
   const [currentLang, setCurrentLang] = useState<'ja' | 'en'>('ja');
-  const [text, setText] = useState('');
-  const [textError, setTextError] = useState('');
-  const [file, setFile] = useState<File | null>(null);
-  const [fileError, setFileError] = useState('');
   const t = translations[currentLang];
 
-  const handleLanguageSwitch = () => {
-    setCurrentLang(currentLang === 'ja' ? 'en' : 'ja');
-  };
-
-  const handleTextSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setTextError('');
-    
-    if (!text.trim()) {
-      setTextError(t.errorText);
-      return;
-    }
-    
-    try {
-      const blob = new Blob([text], { type: 'text/markdown;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'pasted-text.md';
-      a.click();
-      URL.revokeObjectURL(url);
-    } catch (err) {
-      setTextError(t.errorPrefix + (err as Error).message);
-    }
-  };
-
-  const handleFileSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setFileError('');
-    
-    if (!file) {
-      setFileError(t.errorFile);
-      return;
-    }
-    
-    const formData = new FormData();
-    formData.append('file', file);
-    
-    try {
-      const response = await fetch(process.env.NEXT_PUBLIC_API_URL || 'https://markitdown-api.onrender.com/file', {
-        method: 'POST',
-        body: formData
-      });
-      
-      if (!response.ok) {
-        const error = await response.text();
-        throw new Error(error || t.errorConvert);
-      }
-      
-      const markdown = await response.text();
-      const blob = new Blob([markdown], { type: 'text/markdown;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = file.name.replace(/\.[^/.]+$/, '') + '.md';
-      a.click();
-      URL.revokeObjectURL(url);
-    } catch (err) {
-      setFileError(t.errorPrefix + (err as Error).message);
-    }
-  };
+  const handleLanguageSwitch = () => void setCurrentLang(currentLang === 'ja' ? 'en' : 'ja');
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-2xl mx-auto px-6 py-16">
-        <header className="flex justify-between items-start mb-12">
+      <div className="max-w-3xl mx-auto px-6 py-20">
+        <header className="flex justify-between items-start mb-16">
           <div>
-            <h1 className="text-3xl font-semibold text-gray-900 mb-2">{t.title}</h1>
-            <p className="text-gray-600">{t.subtitle}</p>
+            <h1 className="text-4xl font-semibold text-gray-900 mb-3">{t.title}</h1>
+            <p className="text-xl text-gray-600">{t.subtitle}</p>
           </div>
           <button
             onClick={handleLanguageSwitch}
@@ -127,65 +57,43 @@ export default function Home() {
           </button>
         </header>
 
-        <section className="mb-12 p-6 bg-white border border-gray-200">
-          <h2 className="text-lg font-medium text-gray-900 mb-2">{t.macAppTitle}</h2>
-          <p className="text-gray-600 mb-4">{t.macAppDesc}</p>
-          <a
-            href="https://github.com/rt18formula1/MarkItDown-GUI/releases"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block text-sm text-gray-900 hover:text-gray-600 transition-colors"
-          >
-            {t.downloadBtn} →
-          </a>
-          <p className="text-xs text-gray-500 mt-4">{t.warning}</p>
+        <section className="mb-16">
+          <p className="text-lg text-gray-700 leading-relaxed mb-12">{t.description}</p>
+          
+          <div className="grid md:grid-cols-2 gap-6 mb-12">
+            {t.features.map((feature, index) => (
+              <div key={index} className="flex items-start">
+                <span className="text-gray-900 mr-3">•</span>
+                <span className="text-gray-700">{feature}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4">
+            <a
+              href="https://github.com/rt18formula1/MarkItDown-GUI/releases"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-8 py-3 bg-gray-900 text-white text-sm font-medium hover:bg-gray-800 transition-colors text-center"
+            >
+              {t.downloadBtn}
+            </a>
+            <a
+              href="https://github.com/rt18formula1/MarkItDown-GUI"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-8 py-3 border border-gray-300 text-gray-900 text-sm font-medium hover:border-gray-900 transition-colors text-center"
+            >
+              {t.repoBtn}
+            </a>
+          </div>
+
+          <p className="text-xs text-gray-500 mt-6">{t.warning}</p>
         </section>
 
-        <section className="p-6 bg-white border border-gray-200 mb-12">
-          <h2 className="text-lg font-medium text-gray-900 mb-4">{t.textSectionTitle}</h2>
-          <form onSubmit={handleTextSubmit}>
-            <textarea
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-              placeholder={t.textPlaceholder}
-              className="w-full min-h-[200px] p-4 border border-gray-300 font-mono text-sm resize-y focus:outline-none focus:border-gray-900 transition-colors"
-            />
-            <button
-              type="submit"
-              className="mt-4 px-6 py-2 bg-gray-900 text-white text-sm font-medium hover:bg-gray-800 transition-colors"
-            >
-              {t.textSubmit}
-            </button>
-          </form>
-          {textError && (
-            <div className="mt-4 text-sm text-red-600">
-              {textError}
-            </div>
-          )}
-        </section>
-
-        <section className="p-6 bg-white border border-gray-200">
-          <h2 className="text-lg font-medium text-gray-900 mb-4">{t.fileSectionTitle}</h2>
-          <form onSubmit={handleFileSubmit}>
-            <input
-              type="file"
-              onChange={(e) => setFile(e.target.files?.[0] || null)}
-              className="w-full p-4 border border-gray-300 text-sm focus:outline-none focus:border-gray-900 transition-colors"
-              required
-            />
-            <button
-              type="submit"
-              className="mt-4 px-6 py-2 bg-gray-900 text-white text-sm font-medium hover:bg-gray-800 transition-colors"
-            >
-              {t.fileSubmit}
-            </button>
-          </form>
-          {fileError && (
-            <div className="mt-4 text-sm text-red-600">
-              {fileError}
-            </div>
-          )}
-        </section>
+        <footer className="text-sm text-gray-500 pt-8 border-t border-gray-200">
+          <p>Powered by Microsoft MarkItDown</p>
+        </footer>
       </div>
     </div>
   );

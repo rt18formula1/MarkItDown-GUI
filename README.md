@@ -21,25 +21,15 @@ Xcodeが入ったMacで `./package-app.sh` を実行すると`MarkItDownGUI.app`
 
 この端末にはSwiftとCommand Line ToolsはありますがXcode本体がないため、`.app`バンドル化やログイン項目登録はまだ行っていません。
 
-## 独立Web版
+## Webサイト
 
-### ローカル実行（FastAPI）
+MarkItDown GUIの公式ウェブサイトです。アプリの紹介とダウンロードリンクを提供しています。
 
-ブラウザからテキストを貼り付けてMarkdownとして保存、またはファイルをアップロードして同じMarkItDown Pythonパッケージで変換できます。
+- 日英両対応
+- Vercelでホスティング
+- アプリの機能説明とダウンロードリンク
 
-```sh
-cd web
-python3 -m venv .venv
-. .venv/bin/activate
-pip install -r requirements.txt
-uvicorn app:app --host 127.0.0.1 --port 8000
-```
-
-### Next.js版（推奨）
-
-Next.jsを使用したモダンなWebアプリです。日英両対応で、Vercelに最適化されています。
-
-#### ローカル実行
+### ローカル実行
 
 ```sh
 cd web-nextjs
@@ -47,44 +37,6 @@ npm install
 npm run dev
 ```
 
-#### Vercelへのデプロイ
+### デプロイ
 
-1. **Vercelアカウントの作成**
-   - https://vercel.com/ でアカウントを作成
-
-2. **Gitリポジトリの準備**
-   - プロジェクトをGitHub/GitLab/Bitbucketにプッシュ
-
-3. **Vercelで新規プロジェクトを作成**
-   - Vercelダッシュボードで「Add New Project」
-   - Gitプロバイダーを選択し、`rt18formula1/MarkItDown-GUI`リポジトリを選択
-
-4. **プロジェクト設定**
-   - **Framework Preset**: Next.js
-   - **Root Directory**: `web-nextjs`
-   - 自動検出される設定を使用
-
-5. **デプロイ**
-   - 「Deploy」をクリック
-   - 自動的にデプロイが開始されます
-
-#### 手動デプロイ（Vercel CLIを使用）
-
-```sh
-# Vercel CLIのインストール
-npm install -g vercel
-
-# ログイン
-vercel login
-
-# デプロイ
-cd web-nextjs
-vercel --prod
-```
-
-#### 注意点
-
-- Vercel Serverless Functionsには実行時間制限（Hobby無料プラン: 10秒）があります
-- 大きなファイルの変換にはタイムアウトする可能性があります
-- テキスト貼り付けはクライアント側で処理され、そのまま`.md`としてダウンロードされます
-- ファイル変換はMarkItDown Pythonパッケージを使用してサーバーレス関数で処理されます
+ウェブサイトは https://vercel.com でホスティングされています。
