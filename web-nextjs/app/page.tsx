@@ -5,31 +5,35 @@ import { useState } from 'react';
 const translations = {
   ja: {
     langSwitch: 'English',
-    title: 'MarkItDown-GUI',
-    subtitle: 'AI時代、ファイルの扱い方をもっとスマートに。',
-    tagline: 'そのファイル、AIに読み込ませる前にMarkdownに変換しませんか？',
+    heroTitle: 'MarkItDown-GUI',
+    heroSubtitle: 'AI時代、ファイルの扱い方をもっとスマートに。',
+    heroTagline: 'そのファイル、AIに読み込ませる前にMarkdownに変換しませんか？',
+    heroCta: 'BOOTHで購入する（100円）',
+    heroSecondary: 'GitHubを見る',
     description: 'PDF、Word、Excel、PowerPointなど、さまざまな形式のファイルをMarkdownに変換できるmacOS向けデスクトップアプリ「MarkItDown-GUI」です。',
-    problem: 'AIに資料を読み込ませるたびに発生する、無駄なトークン消費やファイル形式の問題。Markdown形式に変換して情報を整理することで、AIに渡すデータを扱いやすくし、トークン消費の最適化を目指せます。',
-    solution: 'Microsoftのオープンソースツール「MarkItDown」は便利ですが、本来の利用にはPython環境の準備やターミナルでのコマンド操作が必要です。MarkItDown-GUIなら、そんな手間は必要ありません。',
+    problemTitle: 'AIに資料を読み込むたびに',
+    problemText: '無駄なトークン消費やファイル形式の問題が発生します。Markdown形式に変換して情報を整理することで、AIに渡すデータを扱いやすくし、トークン消費の最適化を目指せます。',
+    solutionTitle: 'ターミナルはもう必要ありません',
+    solutionText: 'Microsoftのオープンソースツール「MarkItDown」は便利ですが、本来の利用にはPython環境の準備やターミナルでのコマンド操作が必要です。MarkItDown-GUIなら、そんな手間は必要ありません。',
+    featuresTitle: 'AI時代の新しいファイル活用',
     features: [
-      'トークン消費の最適化：Markdown形式に変換することで、AIに読み込ませる資料を扱いやすく整理',
-      'メニューバー常駐：macOSの画面上部からいつでも呼び出せる、手軽なユーティリティ',
-      'シンプルな操作性：ファイルをドラッグ＆ドロップするだけで変換',
-      '変換結果をすぐ確認：Markdownのプレビュー機能を搭載',
-      'ワンクリックでコピー：変換したテキストをそのままAIツールへ',
-      'ローカルで手軽に利用：日常的な資料整理やAI活用の前処理に'
+      { icon: '⚡', title: 'トークン消費の最適化', desc: 'Markdown形式に変換することで、AIに読み込ませる資料を扱いやすく整理' },
+      { icon: '📱', title: 'メニューバー常駐', desc: 'macOSの画面上部からいつでも呼び出せる、手軽なユーティリティ' },
+      { icon: '🎯', title: 'シンプルな操作性', desc: 'ファイルをドラッグ＆ドロップするだけで変換' },
+      { icon: '👁️', title: '変換結果をすぐ確認', desc: 'Markdownのプレビュー機能を搭載' },
+      { icon: '📋', title: 'ワンクリックでコピー', desc: '変換したテキストをそのままAIツールへ' },
+      { icon: '🏠', title: 'ローカルで手軽に利用', desc: '日常的な資料整理やAI活用の前処理に' }
     ],
-    audience: 'ターミナルやコマンド操作をできるだけ避けたい方、Pythonの環境構築に時間をかけたくない方、毎回のコマンド実行を省略したい方、ChatGPTやClaudeなどに大量の資料を読み込ませる方、PDFやOfficeファイルをMarkdownに変換したい方、AIを活用したリサーチ・開発・情報整理を行う方、自分専用のAIナレッジベースを構築したい方',
+    audienceTitle: '初心者から上級者まで',
+    audienceText: 'ターミナルやコマンド操作をできるだけ避けたい方、Pythonの環境構築に時間をかけたくない方、毎回のコマンド実行を省略したい方、ChatGPTやClaudeなどに大量の資料を読み込ませる方、PDFやOfficeファイルをMarkdownに変換したい方、AIを活用したリサーチ・開発・情報整理を行う方、自分専用のAIナレッジベースを構築したい方',
     closing: 'ターミナルを使いこなす人にも、使わない人にも。余計な操作に時間をかけず、AIをもっと有効に活用しましょう。',
-    purchaseBtn: 'BOOTHで購入する（100円）',
-    repoBtn: 'GitHubリポジトリを見る',
-    basicInfo: '基本情報',
+    basicInfoTitle: '基本情報',
     productName: '商品名：MarkItDown-GUI',
     os: '対応OS：macOS',
     format: '販売形式：ダウンロード販売',
     price: '価格：100円',
     license: 'ライセンス：Microsoft MarkItDownを利用',
-    note: 'ご購入前に',
+    noteTitle: 'ご購入前に',
     notes: [
       '本商品はmacOS向けアプリケーションです',
       'Windows・Linuxには対応していません',
@@ -40,31 +44,35 @@ const translations = {
   },
   en: {
     langSwitch: '日本語',
-    title: 'MarkItDown-GUI',
-    subtitle: 'Handle files smarter in the AI era.',
-    tagline: 'Convert your files to Markdown before feeding them to AI?',
+    heroTitle: 'MarkItDown-GUI',
+    heroSubtitle: 'Handle files smarter in the AI era.',
+    heroTagline: 'Convert your files to Markdown before feeding them to AI?',
+    heroCta: 'Purchase on BOOTH (100 JPY)',
+    heroSecondary: 'View GitHub',
     description: 'MarkItDown-GUI is a macOS desktop application that converts various file formats including PDF, Word, Excel, PowerPoint to Markdown.',
-    problem: 'Every time you feed documents to AI, you face unnecessary token consumption and file format issues. By converting to Markdown and organizing information, you can make data more manageable for AI and optimize token consumption.',
-    solution: 'Microsoft\'s open-source tool "MarkItDown" is useful, but normally requires Python environment setup and terminal command operations. With MarkItDown-GUI, you don\'t need that hassle.',
+    problemTitle: 'Every time you feed documents to AI',
+    problemText: 'You face unnecessary token consumption and file format issues. By converting to Markdown and organizing information, you can make data more manageable for AI and optimize token consumption.',
+    solutionTitle: 'No more terminal needed',
+    solutionText: 'Microsoft\'s open-source tool "MarkItDown" is useful, but normally requires Python environment setup and terminal command operations. With MarkItDown-GUI, you don\'t need that hassle.',
+    featuresTitle: 'New file handling in the AI era',
     features: [
-      'Optimize token consumption: Convert to Markdown to organize documents for AI',
-      'Menu bar resident: Access anytime from macOS menu bar',
-      'Simple operation: Just drag and drop files to convert',
-      'Preview results: Built-in Markdown preview',
-      'One-click copy: Send converted text directly to AI tools',
-      'Local and easy: For daily document organization and AI preprocessing'
+      { icon: '⚡', title: 'Optimize token consumption', desc: 'Convert to Markdown to organize documents for AI' },
+      { icon: '📱', title: 'Menu bar resident', desc: 'Access anytime from macOS menu bar' },
+      { icon: '🎯', title: 'Simple operation', desc: 'Just drag and drop files to convert' },
+      { icon: '👁️', title: 'Preview results', desc: 'Built-in Markdown preview' },
+      { icon: '📋', title: 'One-click copy', desc: 'Send converted text directly to AI tools' },
+      { icon: '🏠', title: 'Local and easy', desc: 'For daily document organization and AI preprocessing' }
     ],
-    audience: 'Those who want to avoid terminal and command operations, don\'t want to spend time on Python environment setup, want to skip command execution, feed large documents to ChatGPT/Claude, convert PDF/Office files to Markdown, conduct AI-powered research/development/information organization, build personal AI knowledge bases',
+    audienceTitle: 'For beginners and experts',
+    audienceText: 'Those who want to avoid terminal and command operations, don\'t want to spend time on Python environment setup, want to skip command execution, feed large documents to ChatGPT/Claude, convert PDF/Office files to Markdown, conduct AI-powered research/development/information organization, build personal AI knowledge bases',
     closing: 'For both terminal experts and beginners. Don\'t waste time on unnecessary operations—use AI more effectively.',
-    purchaseBtn: 'Purchase on BOOTH (100 JPY)',
-    repoBtn: 'View GitHub Repository',
-    basicInfo: 'Basic Information',
+    basicInfoTitle: 'Basic Information',
     productName: 'Product: MarkItDown-GUI',
     os: 'OS: macOS',
     format: 'Format: Digital download',
     price: 'Price: 100 JPY',
     license: 'License: Uses Microsoft MarkItDown',
-    note: 'Before Purchase',
+    noteTitle: 'Before Purchase',
     notes: [
       'This product is a macOS application',
       'Not compatible with Windows/Linux',
@@ -82,93 +90,113 @@ export default function Home() {
   const handleLanguageSwitch = () => void setCurrentLang(currentLang === 'ja' ? 'en' : 'ja');
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-3xl mx-auto px-6 py-20">
-        <header className="flex justify-between items-start mb-8">
-          <div>
-            <h1 className="text-4xl font-semibold text-gray-900 mb-2">{t.title}</h1>
-            <p className="text-xl text-gray-600 mb-3">{t.subtitle}</p>
-            <p className="text-lg text-gray-700">{t.tagline}</p>
-          </div>
+    <div className="min-h-screen bg-white">
+      <nav className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm border-b border-gray-100 z-50">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+          <span className="font-semibold text-gray-900">MarkItDown-GUI</span>
           <button
             onClick={handleLanguageSwitch}
             className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
           >
             {t.langSwitch}
           </button>
-        </header>
+        </div>
+      </nav>
 
-        <section className="mb-12">
-          <p className="text-base text-gray-700 leading-relaxed mb-8">{t.description}</p>
-          
-          <div className="bg-white p-6 border border-gray-200 mb-8">
-            <h3 className="text-lg font-medium text-gray-900 mb-3">{t.problem}</h3>
-          </div>
-
-          <div className="bg-white p-6 border border-gray-200 mb-8">
-            <h3 className="text-lg font-medium text-gray-900 mb-3">{t.solution}</h3>
-          </div>
-
-          <h2 className="text-xl font-semibold text-gray-900 mb-6">AI時代の新しいファイル活用</h2>
-          <ul className="space-y-3 mb-12">
-            {t.features.map((feature, index) => (
-              <li key={index} className="flex items-start">
-                <span className="text-gray-900 mr-3">•</span>
-                <span className="text-gray-700">{feature}</span>
-              </li>
-            ))}
-          </ul>
-
-          <div className="bg-gray-100 p-6 mb-12">
-            <h2 className="text-xl font-semibold text-gray-900 mb-3">初心者から上級者まで</h2>
-            <p className="text-gray-700 leading-relaxed mb-4">{t.audience}</p>
-            <p className="text-gray-700">{t.closing}</p>
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-4 mb-12">
+      <main className="pt-24">
+        <section className="max-w-6xl mx-auto px-6 py-20 text-center">
+          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 tracking-tight">
+            {t.heroTitle}
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-600 mb-4">
+            {t.heroSubtitle}
+          </p>
+          <p className="text-lg text-gray-700 mb-12 max-w-2xl mx-auto">
+            {t.heroTagline}
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="https://meteor-cs.booth.pm/items/9057523"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block px-8 py-3 bg-gray-900 text-white text-sm font-medium hover:bg-gray-800 transition-colors text-center"
+              className="inline-block px-8 py-4 bg-gray-900 text-white font-medium hover:bg-gray-800 transition-colors rounded-lg"
             >
-              {t.purchaseBtn}
+              {t.heroCta}
             </a>
             <a
               href="https://github.com/rt18formula1/MarkItDown-GUI"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block px-8 py-3 border border-gray-300 text-gray-900 text-sm font-medium hover:border-gray-900 transition-colors text-center"
+              className="inline-block px-8 py-4 border border-gray-300 text-gray-900 font-medium hover:border-gray-900 transition-colors rounded-lg"
             >
-              {t.repoBtn}
+              {t.heroSecondary}
             </a>
-          </div>
-
-          <div className="bg-white p-6 border border-gray-200 mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">{t.basicInfo}</h2>
-            <ul className="space-y-2 text-gray-700">
-              <li>{t.productName}</li>
-              <li>{t.os}</li>
-              <li>{t.format}</li>
-              <li>{t.price}</li>
-              <li>{t.license}</li>
-            </ul>
-          </div>
-
-          <div className="bg-orange-50 p-6 border border-orange-200">
-            <h2 className="text-lg font-medium text-gray-900 mb-4">{t.note}</h2>
-            <ul className="space-y-2 text-sm text-gray-700">
-              {t.notes.map((note, index) => (
-                <li key={index}>• {note}</li>
-              ))}
-            </ul>
           </div>
         </section>
 
-        <footer className="text-sm text-gray-500 pt-8 border-t border-gray-200">
-          <p>{t.footer}</p>
-        </footer>
-      </div>
+        <section className="max-w-6xl mx-auto px-6 py-16">
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-gray-50 p-8 rounded-2xl">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">{t.problemTitle}</h3>
+              <p className="text-gray-700 leading-relaxed">{t.problemText}</p>
+            </div>
+            <div className="bg-gray-50 p-8 rounded-2xl">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">{t.solutionTitle}</h3>
+              <p className="text-gray-700 leading-relaxed">{t.solutionText}</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="max-w-6xl mx-auto px-6 py-16">
+          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">{t.featuresTitle}</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {t.features.map((feature, index) => (
+              <div key={index} className="bg-white border border-gray-200 p-6 rounded-xl hover:border-gray-300 transition-colors">
+                <span className="text-3xl mb-4 block">{feature.icon}</span>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h3>
+                <p className="text-gray-600 text-sm">{feature.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="max-w-6xl mx-auto px-6 py-16">
+          <div className="bg-gray-900 text-white p-12 rounded-2xl">
+            <h2 className="text-2xl font-bold mb-6">{t.audienceTitle}</h2>
+            <p className="text-gray-300 leading-relaxed mb-6">{t.audienceText}</p>
+            <p className="text-gray-300">{t.closing}</p>
+          </div>
+        </section>
+
+        <section className="max-w-6xl mx-auto px-6 py-16">
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-white border border-gray-200 p-8 rounded-xl">
+              <h2 className="text-xl font-semibold text-gray-900 mb-6">{t.basicInfoTitle}</h2>
+              <ul className="space-y-3 text-gray-700">
+                <li>{t.productName}</li>
+                <li>{t.os}</li>
+                <li>{t.format}</li>
+                <li>{t.price}</li>
+                <li>{t.license}</li>
+              </ul>
+            </div>
+            <div className="bg-orange-50 border border-orange-200 p-8 rounded-xl">
+              <h2 className="text-xl font-semibold text-gray-900 mb-6">{t.noteTitle}</h2>
+              <ul className="space-y-3 text-sm text-gray-700">
+                {t.notes.map((note, index) => (
+                  <li key={index}>• {note}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="border-t border-gray-200 mt-20">
+        <div className="max-w-6xl mx-auto px-6 py-12">
+          <p className="text-sm text-gray-500 text-center">{t.footer}</p>
+        </div>
+      </footer>
     </div>
   );
 }
