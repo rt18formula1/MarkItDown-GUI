@@ -201,18 +201,9 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="max-w-6xl mx-auto px-6 py-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">{t.screenshotsTitle}</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="rounded-xl overflow-hidden border border-gray-200">
-              <img src="/screenshot-1.png" alt="Screenshot 1" className="w-full" />
-            </div>
-            <div className="rounded-xl overflow-hidden border border-gray-200">
-              <img src="/screenshot-2.png" alt="Screenshot 2" className="w-full" />
-            </div>
-            <div className="rounded-xl overflow-hidden border border-gray-200">
-              <img src="/screenshot-3.png" alt="Screenshot 3" className="w-full" />
-            </div>
+        <section className="max-w-4xl mx-auto px-6 py-16">
+          <div className="rounded-2xl overflow-hidden border border-gray-200 shadow-xl">
+            <img src="/screenshot-1.png" alt="App screenshot" className="w-full" />
           </div>
         </section>
 
