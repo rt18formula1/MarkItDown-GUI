@@ -23,7 +23,7 @@ Xcodeが入ったMacで `./package-app.sh` を実行すると`MarkItDownGUI.app`
 
 ## 購入
 
-MarkItDown-GUIはBOOTHで100円で販売しています。
+MarkItDown-GUIはBOOTHで500円で販売しています。
 
 - [BOOTH商品ページ](https://meteor-cs.booth.pm/items/9057523)
 
